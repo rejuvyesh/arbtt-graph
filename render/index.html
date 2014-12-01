@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Daily Usage</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="icon-style.css" rel="stylesheet" type="text/css">
+    <script src="./libs/underscore.js"></script>
+    <script src="./libs/d3.js"></script>
+    <script type="text/javascript" src="./libs/jquery.min.js"></script>
+    <script src="d3utils.js" charset="utf-8"></script>
+    <script src="common.js" charset="utf-8"></script>
+    <script src="settings.js"></script>
+    <script type="text/javascript">
+      function ppDate(date) {
+        return ['Jan.', 'Feb.', 'Mar.', 
+                'Apr.', 'May.', 'Jun.',
+                'Jul.', 'Aug.', 'Sep.', 
+                'Oct.', 'Nov.', 'Dec.'][date.getMonth()] + " " + (function (d) { 
+                  var s = d.toString(), l = s[s.length-1];
+                  return s+(['st','nd','rd'][l-1] || 'th');
+                })(date.getDate()) + ", " + date.getFullYear() + " ";
+      }
+
+      
+      function createPieChart(stats) {
+        var chart_data = {}
+        chart_data.width = $(window).width();
+        chart_data.height = 500;
+        chart_data.data = stats;
+        d3utils.drawPieChart(d3.select('#piechart'), chart_data)
+      }
+
+      function writeTotalTime(tot) {
+        t = tot.split(":");
+        console.log(t)
+          $("#totaltime").html("<span class=\"icon-clock\" style=\"font-size:2rem;color:#26A65B\" aria-hidden=\"true\"></span> " + t[0] + "hr "+ t[1]+ "min "+ t[2]+ "s" + "<span style=\"color:#888\"> logged in.</span>")
+      }
+
+      function writeCarousel(daylog) {
+        dat =  daylog.fname.substring(6).split('.')[0];
+        var d = new Date(dat);
+        $("#car").html('<h2>' + ppDate(d) + '</h2>');
+      }
+
+      function createBarcode(st) {
+        $("#barcode").empty();
+        _.each(display_groups, function(x) { visualizeMinutes(st, x); })
+      }
+
+      function visualizeMinutes(st, filter) {
+        console.log('<Minutes>');
+
+        var div = d3.select("#barcode").append("div");
+        var filters_div = div.append("div").attr("class", "fsdiv");
+        var W = $(window).width() - 40;
+
+        var svg = div.append("svg")
+                     .attr("width", W)
+                     .attr("height", 70);
+
+        var x = d3.scale.linear()
+                        .domain([1, 1440])
+                        .range([0, W]);
+
+        // For every tag in display_group
+        for(var q=0;q<filter.length;q++) {
+          var filter_div = filters_div.append("div").attr("class", "fdiv");
+          console.log("f:"+filter[q]);
+          var dt = st[filter[q]];
+          if(dt == null) continue;
+          console.log(dt);
+          var col = dt['color'];
+          console.log("col:"+col);
+          var minute = dt['minute'];
+
+          filter_div.append("p").attr("class", "tt").attr("style", "color:"+col).text(filter[q]);
+
+          var g = svg.selectAll("e")
+                     .data(minute)
+                     .enter().append("g");
+          g.append("rect")
+           .attr("x", function(d) { return x(d); })
+           .attr("width", W/1440)
+           .attr("y", 0)
+           .attr("height", 50)
+           .attr("fill", col);
+        }
+        var t = 0;
+        while(t < 1440) {
+          svg.append("text")
+             .attr("transform", "translate(" + [t*W/1440, 70] + ")")
+             .attr("font-family", "'Lato', sans-serif")
+             .attr("font-size", '0.9rem')
+             .attr("fill", "#aaa")
+             .text(t/60);
+          t += 240;
+        }
+      }
+      
+      function fetchAndLoadEvents(daylog) {
+        loaded = false;
+        // we do this random thing to defeat caching.
+        var json_path = "data/" + daylog.fname + "?sigh=" + Math.floor(10000*Math.random());
+        console.log(json_path)
+          $.getJSON(json_path, function(data){
+            loaded = true;
+            
+            // Save these as globals so that we can access them later
+            dailyData = data['piedata'];
+            minuteData = data['tagdata'];
+            console.log("data: "+data.length);
+            createPieChart(dailyData);
+            createBarcode(minuteData);
+          });
+      }
+      var totalTime;
+      var dailyData;
+      var minuteData;
+      var loglist = [];
+      var curLogId = -1;
+
+      function start() {
+        $.getJSON("loglist.json", function(data){
+          // Save in global var
+          loglist = data;
+          console.log("loglist" + loglist.length);
+          curLogId = loglist.length - 1;
+          if('gotoday' in QueryString) { curLogId = parseInt(QueryString.gotoday); }
+          
+          fetchAndLoadEvents(loglist[curLogId]);
+          writeTotalTime(loglist[curLogId].totalTime);
+          writeCarousel(loglist[curLogId]);
+
+          // setup arrow events
+          $("#leftarrow").click(function() {
+            curLogId--;
+            if(curLogId < 0) {
+              curLogId = 0;
+            } else {
+              fetchAndLoadEvents(loglist[curLogId]); // display latest
+              writeTotalTime(loglist[curLogId].totalTime);
+              writeCarousel(loglist[curLogId]);
+            }
+          });
+          $("#rightarrow").click(function() {
+            curLogId++;
+            if(curLogId >= loglist.length) {
+              curLogId = loglist.length - 1;
+            } else {
+              fetchAndLoadEvents(loglist[curLogId]); // display latest
+              writeTotalTime(loglist[curLogId].totalTime);
+              writeCarousel(loglist[curLogId]);
+            }
+          });
+
+        });
+        setInterval(redraw, 1000); // in case of window resize, we can redraw
+      }
+      // redraw if dirty (due to window resize event)
+      function redraw() {
+        if(!dirty) return;
+        createBarcode(minuteData);
+        dirty = false;
+      }
+
+      var dirty = false;
+      $(window).resize(function() {
+        dirty = true;
+      });
+
+    </script>
+  </head>
+  
+  <body onload="start()">
+    <div id="overviewlink"><a href="./overview">Overview</a></div>
+    <h1 class="main-header">Daily Usage Stats!</h1>
+    <div>
+      <div id="leftarrow" class="arrow">&#8592;</div>
+      <div id="rightarrow" class="arrow">&#8594;</div>
+      <div id="car"></div>
+    </div>
+    <div id="wrap">
+      <div id="totaltime"></div>
+      <div id="piechart"></div>
+
+      <div id="barcode"></div>
+    </div>
+  </body>
+</html>

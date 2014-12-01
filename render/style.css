@@ -1,0 +1,145 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+/*** Reset ***/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+	  display: block;
+  }
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+  q:before, q:after {
+	  content: '';
+	  content: none;
+  }
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*********/
+body {
+  font-family: Oswald, sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+g {
+  font-size: 1rem;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.tt {
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.td {
+  font-size: 1.4rem;
+}
+
+#piechart {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  background-color: #D6E1ED;
+  margin: 0;
+  padding: 20px;
+  box-shadow: 0px 0px 3px 0px #adc3db;
+}
+
+h1 {
+  text-align: center;
+  color: #FFF;
+  font-size: 2.5rem;
+  font-weight: normal;
+  background-color: #d5a295;
+  margin: 0;
+  padding: 20px;
+}
+
+#overviewlink {
+  position: absolute;
+  font-size: 2rem;
+  top: 1.5rem;
+  right: 100px;
+  font-weight: normal;
+  font-family: 'Lato', sans-serif;
+}
+
+#overviewlink a {
+  color: #FFF;
+}
+
+#leftarrow {
+  float: left;
+}
+#rightarrow {
+  float: right;
+}
+
+.arrow {
+  font-size: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  color: #182636;
+  cursor: pointer;
+  /* make arrows unselectable, since they are text technically */
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  -o-user-select: none; /* not yet supported well */
+  user-select: none;   
+}
+
+#totaltime {
+  text-align: center;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+#wrap {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.fdiv {
+  display: inline-block;
+  margin-right: 3rem;
+}
+
+#barcode {
+  border-top: 1px solid #AAA;
+}
