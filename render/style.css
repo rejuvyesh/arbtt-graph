@@ -92,13 +92,22 @@ h1 {
   position: absolute;
   font-size: 2rem;
   top: 1.5rem;
-  right: 100px;
+  left: 100px;
   font-weight: normal;
   font-family: 'Lato', sans-serif;
 }
 
 #overviewlink a {
   color: #FFF;
+}
+
+#reloadbutton {
+  position: absolute;
+  color: white;
+  font-size: 2.5rem;
+  right: 100px;
+  top: 1rem;
+  cursor: pointer;
 }
 
 #leftarrow {
@@ -142,4 +151,12 @@ h1 {
 
 #barcode {
   border-top: 1px solid #AAA;
+}
+
+#spinnerdiv {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
 }

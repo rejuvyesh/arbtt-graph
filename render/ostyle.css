@@ -90,3 +90,19 @@ h2 {
   cursor: pointer;
   padding: 5px;
 }
+#reloadbutton {
+  position: absolute;
+  color: white;
+  font-size: 2.5rem;
+  right: 100px;
+  top: 1rem;
+  cursor: pointer;
+}
+
+#spinnerdiv {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+}

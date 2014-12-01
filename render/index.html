@@ -100,6 +100,17 @@
           t += 240;
         }
       }
+
+      function startSpinner() {
+        // create a spinner
+        var target = document.getElementById('spinnerdiv');
+        opts = {left:'30px', top:'40px', radius: 10, color: "#FFF" };
+        var spinner = new Spinner(opts).spin(target);
+      }
+      function stopSpinner() {
+        $("#spinnerdiv").empty();
+      }
+
       
       function fetchAndLoadEvents(daylog) {
         loaded = false;
@@ -135,6 +146,24 @@
           writeTotalTime(loglist[curLogId].totalTime);
           writeCarousel(loglist[curLogId]);
 
+          // setup refresh handler to create a post request to /reload
+          $("#reloadbutton").click(function() {
+
+            startSpinner();
+            $.post("/refresh", {},
+                   function(data,status){
+                     console.log("Data: " + data + "\nStatus: " + status);
+                     stopSpinner();
+                     if(data === 'OK') {
+                       // everything went well, refresh current view
+                       fetchAndLoadEvents(loglist[curLogId]);
+                       writeTotalTime(loglist[curLogId].totalTime);
+                       writeCarousel(loglist[curLogId]);
+                     }
+                   });
+          });
+
+          
           // setup arrow events
           $("#leftarrow").click(function() {
             curLogId--;
@@ -176,6 +205,8 @@
   </head>
   
   <body onload="start()">
+    <div id="spinnerdiv"></div>
+    <div id="reloadbutton">&#10226</div>
     <div id="overviewlink"><a href="./overview">Overview</a></div>
     <h1 class="main-header">Daily Usage Stats!</h1>
     <div>
