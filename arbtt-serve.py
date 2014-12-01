@@ -35,7 +35,7 @@ class CustomHandler(SimpleHTTPRequestHandler):
     if self.path == '/refresh':
       # recompute jsons
       os.chdir(rootdir)
-      os.system('update') # Update the content, takes some time
+      os.system('./update') # Update the content, takes some time
       os.chdir('render')
       result = 'OK'
 

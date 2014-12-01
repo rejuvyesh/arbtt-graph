@@ -1,0 +1,16 @@
+#!/bin/sh
+
+./arbtt-stats --categorizefile=./categorize.cfg \
+              --for-each=day \
+              --output-format=CSV \
+              --category=Graph \
+              --min-percentage=0.1 \
+              > /tmp/daily.csv
+./arbtt-stats --categorizefile=./categorize.cfg \
+              --for-each=minute \
+              --output-format=CSV \
+              --category=Graph\
+              --min-percentage=0.1 \
+              > /tmp/minute.csv
+
+python3 readArbttStats.py -c 'misc' -d /tmp/daily.csv -m /tmp/minute.csv
