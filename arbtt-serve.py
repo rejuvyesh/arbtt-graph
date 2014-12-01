@@ -24,7 +24,7 @@ class CustomHandler(SimpleHTTPRequestHandler):
   def do_GET(self):
     SimpleHTTPRequestHandler.do_GET(self)
 
-  def doPOST(self):
+  def do_POST(self):
     form = cgi.FieldStorage(
       fp = self.rfile,
       headers = self.headers,
@@ -42,7 +42,7 @@ class CustomHandler(SimpleHTTPRequestHandler):
     self.send_response(200)
     self.send_header('Content-type','text/html')
     self.end_headers()
-    self.wfile.write(result)
+    self.wfile.write(bytes(result, 'UTF-8'))
       
 if __name__ == '__main__':
   if len(sys.argv) > 1:
