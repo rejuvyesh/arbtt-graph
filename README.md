@@ -54,4 +54,4 @@ Suggestions and pull requests are always welcome.
 - [Joachim Breitner](https://github.com/nomeata) for `arbtt` and numerous suggestions.
 - [Andrej Karpathy](https://github.com/karpathy/) for `ulogme`.
 
-## > Happy tracking!
+> ## Happy tracking!
