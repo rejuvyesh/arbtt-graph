@@ -24,7 +24,7 @@ Graph:write         |  1d17h06m00s |       1.91
 (unmatched time)    | 43d22h02m00s |      49.07
 ```
 
-It is pretty cool. But you would agree that colored graphs are much more striking than a plain ascii table? So taking a few ideas from [karpathy's](https://github.com/karpathy/) [ulogme](https://github.com/karpathy/ulogme). I have written this tool to plot your daily stats as logged by `arbtt-capture`.
+It is pretty cool. But you would agree that colored graphs are much more striking than a plain ascii table? So taking a few ideas from [karpathy's](https://github.com/karpathy/) [ulogme](https://github.com/karpathy/ulogme), I wrote this tool to plot my daily stats as logged by `arbtt-capture`.
 
 ## Getting Started
 
