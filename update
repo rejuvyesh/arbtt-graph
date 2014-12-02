@@ -1,15 +1,18 @@
 #!/bin/sh
 
-./arbtt-stats --categorizefile=./categorize.cfg \
+CATEGORIZE_FILE="./categorize.cfg"
+CATEGORY="Graph"
+
+./arbtt-stats --categorizefile=$CATEGORIZE_FILE \
               --for-each=day \
               --output-format=CSV \
-              --category=Graph \
+              --category=$CATEGORY \
               --min-percentage=0.1 \
               > /tmp/daily.csv
-./arbtt-stats --categorizefile=./categorize.cfg \
+./arbtt-stats --categorizefile=$CATEGORIZE_FILE \
               --for-each=minute \
               --output-format=CSV \
-              --category=Graph\
+              --category=$CATEGORY \
               --min-percentage=0.1 \
               > /tmp/minute.csv
 
