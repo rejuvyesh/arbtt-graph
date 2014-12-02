@@ -9,14 +9,15 @@ FILTER="\$sampleage <= 2922:00" # Last 4 months
               --output-format=CSV \
               --category=$CATEGORY \
               --min-percentage=0.1 \
-              --filter=$FILTER \
+              --filter="$FILTER" \
               > /tmp/daily.csv
+
 ./arbtt-stats --categorizefile=$CATEGORIZE_FILE \
               --for-each=minute \
               --output-format=CSV \
               --category=$CATEGORY \
               --min-percentage=0.1 \
-              --filter=$FILTER \
+              --filter="$FILTER" \
               > /tmp/minute.csv
 
 python3 readArbttStats.py -c 'misc' -d /tmp/daily.csv -m /tmp/minute.csv
