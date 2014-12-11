@@ -135,7 +135,7 @@
       var curLogId = -1;
 
       function start() {
-        $.getJSON("loglist.json", function(data){
+        $.getJSON("loglist.json" + "?sigh=" + Math.floor(10000*Math.random()), function(data){
           // Save in global var
           loglist = data;
           console.log("loglist" + loglist.length);
