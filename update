@@ -4,7 +4,7 @@ CATEGORIZE_FILE="./categorize.cfg"
 CATEGORY="Graph"
 FILTER="\$sampleage <= 2922:00" # Last 4 months
 
-./arbtt-stats --categorizefile=$CATEGORIZE_FILE \
+arbtt-stats --categorizefile=$CATEGORIZE_FILE \
               --for-each=day \
               --output-format=CSV \
               --category=$CATEGORY \
@@ -12,7 +12,7 @@ FILTER="\$sampleage <= 2922:00" # Last 4 months
               --filter="$FILTER" \
               > /tmp/daily.csv
 
-./arbtt-stats --categorizefile=$CATEGORIZE_FILE \
+arbtt-stats --categorizefile=$CATEGORIZE_FILE \
               --for-each=minute \
               --output-format=CSV \
               --category=$CATEGORY \
