@@ -185,7 +185,7 @@
                       'Jul', 'Aug', 'Sep', 
                       'Oct', 'Nov', 'Dec'];
         var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
-        return days[date.getDay()] + ', ' + date.getDate() + " " + months[date.getMonth()];
+        return days[date.getDay()] + ', ' + date.getUTCDate() + " " + months[date.getMonth()];
       }
 
       function startSpinner() {
