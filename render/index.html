@@ -22,7 +22,7 @@
                 'Oct.', 'Nov.', 'Dec.'][date.getMonth()] + " " + (function (d) { 
                   var s = d.toString(), l = s[s.length-1];
                   return s+(['st','nd','rd'][l-1] || 'th');
-                })(date.getDate()) + ", " + date.getFullYear() + " ";
+                })(date.getUTCDate()) + ", " + date.getFullYear() + " ";
       }
 
       
@@ -42,6 +42,7 @@
 
       function writeCarousel(daylog) {
         dat =  daylog.fname.substring(6).split('.')[0];
+
         var d = new Date(dat);
         $("#car").html('<h2>' + ppDate(d) + '</h2>');
       }
