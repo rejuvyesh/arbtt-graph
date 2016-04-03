@@ -117,7 +117,11 @@ def dailyUsage(dailyfile, minutefile, unmatched):
         if tag in minutestats[day].keys():
           minutestats[day][tag]['minute'].append(moment)
         else:
-          minutestats[day][tag] = {'minute': [moment], 'color': colors[tag]}
+          if tag in colors.keys():
+            minutestats[day][tag] = {'minute': [moment], 'color': colors[tag]}
+          else:
+            colors[tag] = d3colors[(len(colors)+1) % len(d3colors)]
+            minutestats[day][tag] = {'minute': [moment], 'color': colors[tag]}
       else:
         minutestats[day] = {tag: {'minute': [moment], 'color': colors[tag]}}
 
