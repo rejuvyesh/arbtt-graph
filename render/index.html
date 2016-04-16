@@ -21,6 +21,7 @@
                 'Jul.', 'Aug.', 'Sep.', 
                 'Oct.', 'Nov.', 'Dec.'][date.getMonth()] + " " + (function (d) { 
                   var s = d.toString(), l = s[s.length-1];
+                  if (s == 11 || s == 12) return s + 'th';
                   return s+(['st','nd','rd'][l-1] || 'th');
                 })(date.getUTCDate()) + ", " + date.getFullYear() + " ";
       }
@@ -61,7 +62,7 @@
 
         var svg = div.append("svg")
                      .attr("width", W)
-                     .attr("height", 70);
+                     .attr("height", 50);
 
         var x = d3.scale.linear()
                         .domain([1, 1440])

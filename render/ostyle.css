@@ -45,11 +45,11 @@ body {
 h1 {
   text-align: center;
   color: #FFF;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: normal;
   background-color: #d5a295;
   margin: 0;
-  padding: 20px;
+  padding: 15px;
 }
 
 #content {
@@ -61,7 +61,7 @@ h1 {
 #backlink {
   position: absolute;
   font-size: 2rem;
-  top: 25px;
+  top: 1rem;
   left: 100px;
   font-weight: normal;
   font-family: 'Lato', sans-serif;
@@ -72,8 +72,8 @@ h1 {
 }
 
 h2 {
-  padding: 20px;
-  font-size: 1.8rem;
+  padding: 15px;
+  font-size: 1.5rem;
   font-weight: normal;
 }
 
@@ -95,7 +95,7 @@ h2 {
   color: white;
   font-size: 2.5rem;
   right: 100px;
-  top: 1rem;
+  top: 0.5rem;
   cursor: pointer;
 }
 

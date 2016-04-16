@@ -84,7 +84,7 @@
 
         var margin = {top: 10, right:10, bottom: 100, left: 40};
 
-        var fullwidth = loglist.length * 15;
+        var fullwidth = 100 + loglist.length * 15;
         var fullheight = 800;
         var width = fullwidth - margin.left - margin.right;
         var height = fullheight - margin.top - margin.bottom;
@@ -92,7 +92,6 @@
         var svg = d3div.append("svg")
                        .attr("width", width + margin.left + margin.right)
                        .attr("height", height + margin.top + margin.bottom);
-
         var yscale = 0.008;
 
         // draw y axis labels
@@ -123,7 +122,7 @@
            .enter()
            .append("text")
            .attr("transform", function(d, i) {
-             var x = margin.left + i * dsz;
+             var x = margin.left + i * dsz + (dsz / 3);
              var y = height + margin.top + 3;
              return "translate(" + x + "," + y + ")rotate(90)";})
            .attr("fill", "#333")

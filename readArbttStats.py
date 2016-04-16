@@ -129,7 +129,7 @@ def dailyUsage(dailyfile, minutefile, unmatched):
 
 
 def main():
-  parser = argparse.ArgumentParser(prog='readArbttStats', description='read arbtt stats nad convert them to jsons', add_help=True)
+  parser = argparse.ArgumentParser(prog='readArbttStats', description='read arbtt stats and convert them to jsons', add_help=True)
   parser.add_argument('-c', '--category_name', default='misc', help='arbtt unmatched category name')
   parser.add_argument('-d', '--daily_csv', help='CSV of daily data')
   parser.add_argument('-m', '--minute_csv', help='CSV of minute by minute data.')
