@@ -21,6 +21,7 @@
                 'Jul.', 'Aug.', 'Sep.', 
                 'Oct.', 'Nov.', 'Dec.'][date.getMonth()] + " " + (function (d) { 
                   var s = d.toString(), l = s[s.length-1];
+                  if (s == 11 || s == 12) return s + 'th';
                   return s+(['st','nd','rd'][l-1] || 'th');
                 })(date.getUTCDate()) + ", " + date.getFullYear() + " ";
       }
@@ -61,7 +62,7 @@
 
         var svg = div.append("svg")
                      .attr("width", W)
-                     .attr("height", 70);
+                     .attr("height", 50);
 
         var x = d3.scale.linear()
                         .domain([1, 1440])
@@ -87,17 +88,17 @@
            .attr("x", function(d) { return x(d); })
            .attr("width", W/1440)
            .attr("y", 0)
-           .attr("height", 50)
+           .attr("height", 30)
            .attr("fill", col);
         }
         var t = 0;
         while(t < 1440) {
           svg.append("text")
-             .attr("transform", "translate(" + [t*W/1440, 70] + ")")
+             .attr("transform", "translate(" + [t*W/1440, 50] + ")")
              .attr("font-family", "'Lato', sans-serif")
              .attr("font-size", '0.9rem')
              .attr("fill", "#aaa")
-             .text(t/60);
+             .text(t/60 + ":00");
           t += 240;
         }
       }

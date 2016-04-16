@@ -3,7 +3,7 @@ arbtt-graph
 
 ## arbtt - Automatic Rule Based Time Tracker
 
-**Note: Requires yet unreleased `arbtt-stats` version 0.9. Since it now has `for-each=minute` for the barcode chart to work.**
+**Note: Requires `arbtt-stats` version 0.9, since it has `for-each=minute`, which is required for the barcode chart to work.**
 
 I love [arbtt](http://arbtt.nomeata.de/). Just remember to add `arbtt-capture` to your startup applications and let it record active windows in the background. Then you can use `arbtt-stats` to categorize recorded data. For example, running `arbtt-stats` with the included `categorize.cfg` file:
 
@@ -36,10 +36,10 @@ It is pretty cool. But you would agree that colored graphs are much more strikin
 ### Using arbtt-graph
 
 1. Clone/download this repository.
-2. Have a look at the `categorize.cfg` file. Add similar category to your `categorize.cfg` file. (Usually at `~/.arbtt/categorize.cfg`).
+2. Have a look at the `categorize.cfg` file. Add similar categories to your `categorize.cfg` file. (Usually at `~/.arbtt/categorize.cfg`).
 3. **Important:** Modify path of the file in `update`.
 4. **Important:** Accordingly modify `render/settings.js` for barcode categories.
-5. Once everything is setup, run `update` once.
+5. Once everything is set up, run `update` once.
 6. Now you can run `./arbtt-server.py` (or `python3 arbtt-serve.py`) and go to the displayed address. (Default: <`http://localhost:9999`>)
 7. You can refresh anytime using the reload button to the right.
 
