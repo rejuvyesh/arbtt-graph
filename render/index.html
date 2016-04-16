@@ -88,17 +88,17 @@
            .attr("x", function(d) { return x(d); })
            .attr("width", W/1440)
            .attr("y", 0)
-           .attr("height", 50)
+           .attr("height", 30)
            .attr("fill", col);
         }
         var t = 0;
         while(t < 1440) {
           svg.append("text")
-             .attr("transform", "translate(" + [t*W/1440, 70] + ")")
+             .attr("transform", "translate(" + [t*W/1440, 50] + ")")
              .attr("font-family", "'Lato', sans-serif")
              .attr("font-size", '0.9rem')
              .attr("fill", "#aaa")
-             .text(t/60);
+             .text(t/60 + ":00");
           t += 240;
         }
       }
