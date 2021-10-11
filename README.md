@@ -54,4 +54,8 @@ Suggestions and pull requests are always welcome.
 - [Joachim Breitner](https://github.com/nomeata) for `arbtt` and numerous suggestions.
 - [Andrej Karpathy](https://github.com/karpathy/) for `ulogme`.
 
+## See also
+
+- [arbtt-chart](https://github.com/liskin/arbtt-chart) is a console alternative to arbtt-graph
+
 > ## Happy tracking!
